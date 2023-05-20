@@ -4,10 +4,12 @@ from config import *
 from flask import Flask, render_template,request,redirect,url_for,flash,session
 # pip install pyjwt
 import jwt
-#
 from datetime import datetime,timedelta
+# pip install numpy
 import numpy as np
+# pip install pandas
 import pandas as pd
+# pip install scikit-learn
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
