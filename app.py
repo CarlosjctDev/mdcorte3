@@ -160,10 +160,7 @@ def add():
     correo= request.form["email"]
     mensaje= request.form["message"]  
     if len(nombre and correo and mensaje) >= 1:
-        cur.execute("""INSERT INTO tcontact_us_adm (nombre,correo,mensaje)
-        VALUES(%s,%s,%s)""",
-        (nombre,correo,mensaje))        
-        cnx.commit()
+        controlador.c_add_registro_pag_contact_us(nombre,correo,mensaje)
         # MENSAJE (datos insertados)
         flash("0")
     else:
@@ -178,22 +175,13 @@ def add():
 @token_required
 def PagContactUsAdmin():
      if request.method == 'GET':
-          cur.execute('SELECT * FROM tcontact_us_adm')
-          result=cur.fetchall()
-          #Convertir los datos a diccionario
-          insertObject= []
-          columnNames = [column[0] for column in cur.description]
-          for record in result:
-               insertObject.append(dict(zip(columnNames,record)))
+          insertObject=controlador.c_listar_tcontact_us_pag_contactus_admin()
           return render_template('contact_us_admin.html',data=insertObject)
 
 @appf.route('/delete/<id>')
 @token_required
 def delete(id):
-     sql = "DELETE FROM tcontact_us_adm WHERE id=%s"
-     data = (id,)
-     cur.execute(sql,data)
-     cnx.commit()
+     controlador.c_delete_pag_contact_us_admin(id)
      #dato eliminado
      flash("2")
      return redirect(url_for('PagContactUsAdmin'))
@@ -204,11 +192,7 @@ def edit(id):
      nombre= request.form["nombre"]
      correo= request.form["correo"]
      mensaje= request.form["mensaje"]
-     sql = """UPDATE tcontact_us_adm SET nombre=%s, correo=%s, mensaje=%s 
-     WHERE id = %s"""
-     data = (nombre,correo,mensaje,id)
-     cur.execute(sql,data)
-     cnx.commit()
+     controlador.c_editar_pag_contact_us_admin(nombre,correo,mensaje,id)
      #Datos Actualizado
      flash("1")
      return redirect(url_for('PagContactUsAdmin'))
@@ -217,13 +201,7 @@ def edit(id):
 @token_required
 def PagPrediccionAdmin():
      if request.method == 'GET':
-          cur.execute('SELECT * FROM twine_prediction_user')
-          result=cur.fetchall()
-          #Convertir los datos a diccionario
-          insertObject= []
-          columnNames = [column[0] for column in cur.description]
-          for record in result:
-               insertObject.append(dict(zip(columnNames,record)))
+          insertObject=controlador.c_listar_twine_pag_pred()
           return render_template('prediccion_admin.html',data=insertObject)
      
 @appf.route('/edit_prediccion_Admin/<id>', methods=['POST'])
