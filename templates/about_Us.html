@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %} Acerca de {% endblock %}
+{% block enlaces %}
+<li><a href="/" class="active">Inicio</a></li>
+<li><a href="prediccion" >Prediccion</a></li>                    
+<li><a href="contact_Us">Contáctenos</a></li>
+<li id="nodo-login"><a href="login">Iniciar Session</a></li>
+{% endblock %}
+{% block token %}{{token}}{% endblock %}
+{% block content %}
+<main> 
+    <!-- About Us -->
+    <div class="img-acercade">
+        <div class="div-Arrow_down_pag_pred">
+            <i class="fa-solid fa-arrow-down Arrow_down_pag_pred"></i>
+        </div> 
+    <section class="about-us">
+
+        <div class="info">
+            <h3 class="about-us__title">Equipo de trabajo</h3>
+            <p class="about-us__team">Edwin Polo</p>
+            <p class="about-us__team">Roy Rojas</p>
+            <p class="about-us__team">Carlos Castaño</p>
+            <p class="about-us__team">Yesid Robles</p>
+            <p class="about-us__team">Luis Castro</p>
+            <hr class="about-us__hr">
+        </div>
+    </section>
+    </div>
+</main>
+      
+{% endblock %}
+{% block js %}
+<script src="../static/js/base.js"></script>
+<!-- Copie el mismo script para ahorrar tiempo y codigo -->
+<script src="../static/js/prediccion.js"></script>
+{% endblock %}
