@@ -3,6 +3,7 @@ from flask import Flask, render_template,request,redirect,url_for,flash,session
 from config import *
 from controller.controller import *
 from functools import wraps
+import jwt
 
 # Controller
 controlador= controller()

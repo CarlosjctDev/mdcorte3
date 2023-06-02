@@ -49,7 +49,7 @@ class model():
         cur.execute('SELECT id FROM tadmin ')
         idadmin=cur.fetchall()
         cur.execute('SELECT username FROM tadmin ')
-        usersadmin=cur.fetchall()
+        usersadmin=cur.fetchallp()
         cur.execute('SELECT clave FROM tadmin ')
         claveadmin=cur.fetchall()
         if request.method == 'POST':
